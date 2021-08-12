@@ -1,5 +1,6 @@
 package mk.ukim.finki.dick.prezemiakcijabackend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.dto.InitiativeDto;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "initiatives")
 public class Initiative implements Serializable {

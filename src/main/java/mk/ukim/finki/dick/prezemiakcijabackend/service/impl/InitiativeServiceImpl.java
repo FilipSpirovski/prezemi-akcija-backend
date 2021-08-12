@@ -58,7 +58,7 @@ public class InitiativeServiceImpl implements InitiativeService {
     }
 
     @Override
-    public Initiative createInitiative(InitiativeDto initiativeDto, String authPayload, Authentication authentication) throws
+    public Initiative createInitiative(InitiativeDto initiativeDto, Authentication authentication) throws
             ConstraintViolationException, InvalidCategoryName, InvalidEventTypeName, InvalidDateAndTime {
         this.checkDtoForViolations(initiativeDto);
         this.validateCategoryName(initiativeDto.getCategoryName());
@@ -127,7 +127,8 @@ public class InitiativeServiceImpl implements InitiativeService {
         }
     }
 
-    private Category validateCategoryName(String categoryName) {
+    @Override
+    public Category validateCategoryName(String categoryName) {
         boolean validCategoryName = false;
 
         for (Category category : Category.values()) {
@@ -144,7 +145,8 @@ public class InitiativeServiceImpl implements InitiativeService {
         }
     }
 
-    private EventType validateEventTypeName(String eventTypeName) {
+    @Override
+    public EventType validateEventTypeName(String eventTypeName) {
         boolean validEventTypeName = false;
 
         for (EventType eventType : EventType.values()) {
@@ -161,7 +163,8 @@ public class InitiativeServiceImpl implements InitiativeService {
         }
     }
 
-    private void checkDtoForViolations(InitiativeDto initiativeDto) {
+    @Override
+    public void checkDtoForViolations(InitiativeDto initiativeDto) {
         var constraintViolations = this.validator.validate(initiativeDto);
 
         if (constraintViolations.size() > 0) {

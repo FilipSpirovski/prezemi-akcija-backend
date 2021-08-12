@@ -70,10 +70,9 @@ public class InitiativeApi {
 
     @PostMapping("/new")
     public ResponseEntity addNewInitiative(@RequestBody InitiativeDto initiativeDto,
-                                           @RequestHeader("Authorization") String authPayload,
                                            Authentication authentication) {
         try {
-            Initiative initiative = this.initiativeService.createInitiative(initiativeDto, authPayload, authentication);
+            Initiative initiative = this.initiativeService.createInitiative(initiativeDto, authentication);
 
             return ResponseEntity.ok(initiative);
         } catch (ConstraintViolationException | InvalidCategoryName | InvalidEventTypeName | InvalidDateAndTime e) {

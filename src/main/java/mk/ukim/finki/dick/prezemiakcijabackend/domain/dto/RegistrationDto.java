@@ -1,10 +1,12 @@
 package mk.ukim.finki.dick.prezemiakcijabackend.domain.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.*;
 
 @Data
+@AllArgsConstructor
 public class RegistrationDto {
 
     @Email

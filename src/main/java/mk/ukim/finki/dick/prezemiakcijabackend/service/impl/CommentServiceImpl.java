@@ -85,7 +85,7 @@ public class CommentServiceImpl implements CommentService {
 //    }
 
     @Override
-    public boolean deleteComment(Long commentId) throws CommentNotFound {
+    public boolean deleteComment(Long commentId) {
         Comment existingComment = this.findById(commentId);
 
         this.commentRepository.delete(existingComment);

@@ -1,6 +1,7 @@
 package mk.ukim.finki.dick.prezemiakcijabackend.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "forums")
 public class Forum implements Serializable {
