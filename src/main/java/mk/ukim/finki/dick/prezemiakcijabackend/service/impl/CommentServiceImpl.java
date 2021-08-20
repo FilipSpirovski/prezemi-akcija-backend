@@ -12,9 +12,11 @@ import mk.ukim.finki.dick.prezemiakcijabackend.service.CommentService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -99,7 +101,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     private void checkDtoForViolations(CommentDto commentDto) {
-        var constraintViolations = this.validator.validate(commentDto);
+        Set<ConstraintViolation<CommentDto>> constraintViolations = this.validator.validate(commentDto);
 
         if (constraintViolations.size() > 0) {
             throw new ConstraintViolationException("The provided 'Comment' object is not valid.", constraintViolations);

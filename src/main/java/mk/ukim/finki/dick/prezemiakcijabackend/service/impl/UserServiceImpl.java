@@ -18,10 +18,12 @@ import mk.ukim.finki.dick.prezemiakcijabackend.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -107,7 +109,7 @@ public class UserServiceImpl implements UserService {
 //    }
 
     private void checkRegistrationDtoForViolations(RegistrationDto registrationDto) {
-        var constraintViolations = this.validator.validate(registrationDto);
+        Set<ConstraintViolation<RegistrationDto>> constraintViolations = this.validator.validate(registrationDto);
 
         if (constraintViolations.size() > 0) {
             throw new ConstraintViolationException("The provided 'Registration' object is not valid.", constraintViolations);
@@ -128,7 +130,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void checkLoginDtoForViolations(LoginDto loginDto) {
-        var constraintViolations = this.validator.validate(loginDto);
+        Set<ConstraintViolation<LoginDto>> constraintViolations = this.validator.validate(loginDto);
 
         if (constraintViolations.size() > 0) {
             throw new ConstraintViolationException("The provided 'Login' object is not valid.", constraintViolations);

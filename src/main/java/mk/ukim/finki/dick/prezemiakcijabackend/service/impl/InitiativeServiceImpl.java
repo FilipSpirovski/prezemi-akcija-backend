@@ -14,10 +14,12 @@ import mk.ukim.finki.dick.prezemiakcijabackend.service.InitiativeService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -165,7 +167,7 @@ public class InitiativeServiceImpl implements InitiativeService {
 
     @Override
     public void checkDtoForViolations(InitiativeDto initiativeDto) {
-        var constraintViolations = this.validator.validate(initiativeDto);
+        Set<ConstraintViolation<InitiativeDto>> constraintViolations = this.validator.validate(initiativeDto);
 
         if (constraintViolations.size() > 0) {
             throw new ConstraintViolationException("The provided 'Initiative' object is not valid.", constraintViolations);
