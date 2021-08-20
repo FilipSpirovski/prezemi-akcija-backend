@@ -18,6 +18,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.*;
 
@@ -80,7 +81,7 @@ public class CommentServiceTests {
         CommentDto commentDto = new CommentDto(id, text);
         Comment comment = new Comment(forum, submitterEmail, commentDto.getText());
         Authentication authentication = createAuthenticationObject(submitterEmail);
-        var constraintViolations = this.validator.validate(commentDto);
+        Set<ConstraintViolation<CommentDto>> constraintViolations = this.validator.validate(commentDto);
 
         Mockito.when(this.validator.validate(commentDto)).thenReturn(constraintViolations);
         Mockito.when(this.forumRepository.findById(id)).thenReturn(Optional.of(forum));

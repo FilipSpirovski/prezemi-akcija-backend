@@ -25,9 +25,11 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.Date;
 import java.util.Optional;
+import java.util.Set;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTests {
@@ -65,7 +67,7 @@ public class UserServiceTests {
     public void registerUserWithValidData() {
         RegistrationDto registrationDto = createRegistrationDto();
         User user = new User(registrationDto);
-        var constraintViolations = this.validator.validate(registrationDto);
+        Set<ConstraintViolation<RegistrationDto>> constraintViolations = this.validator.validate(registrationDto);
 
         Mockito.when(this.validator.validate(registrationDto)).thenReturn(constraintViolations);
         Mockito.when(this.userRepository.findByEmail(user.getEmail())).thenThrow(new UserNotFound(user.getEmail()));
@@ -83,7 +85,7 @@ public class UserServiceTests {
         String password = "password";
         LoginDto loginDto = new LoginDto(email, password);
         User user = new User(createRegistrationDto());
-        var constraintViolations = this.validator.validate(loginDto);
+        Set<ConstraintViolation<LoginDto>> constraintViolations = this.validator.validate(loginDto);
 
         Mockito.when(this.validator.validate(loginDto)).thenReturn(constraintViolations);
         Mockito.when(this.userRepository.findByEmail(email)).thenReturn(Optional.of(user));
