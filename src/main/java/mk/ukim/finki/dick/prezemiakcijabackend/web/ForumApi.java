@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.Comment;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.Forum;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.dto.CommentDto;
+import mk.ukim.finki.dick.prezemiakcijabackend.domain.dto.DeleteActionResponse;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.exc.CommentNotFound;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.exc.ForumForInitiativeAlreadyExists;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.exc.ForumForInitiativeNotFound;
@@ -176,7 +177,7 @@ public class ForumApi {
             if (result) {
                 String message = String.format("The comment with the provided id (%d) was successfully deleted.", id);
 
-                return ResponseEntity.ok(message);
+                return ResponseEntity.ok(new DeleteActionResponse(message));
             } else {
                 return ResponseEntity.internalServerError().build();
             }

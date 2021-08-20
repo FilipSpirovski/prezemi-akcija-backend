@@ -2,6 +2,7 @@ package mk.ukim.finki.dick.prezemiakcijabackend.web;
 
 import lombok.AllArgsConstructor;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.Initiative;
+import mk.ukim.finki.dick.prezemiakcijabackend.domain.dto.DeleteActionResponse;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.dto.InitiativeDto;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.exc.*;
 import mk.ukim.finki.dick.prezemiakcijabackend.service.InitiativeService;
@@ -126,7 +127,7 @@ public class InitiativeApi {
             if (result) {
                 String message = String.format("The initiative with the provided id (%d) was successfully deleted.", id);
 
-                return ResponseEntity.ok(message);
+                return ResponseEntity.ok(new DeleteActionResponse(message));
             } else {
                 return ResponseEntity.internalServerError().build();
             }

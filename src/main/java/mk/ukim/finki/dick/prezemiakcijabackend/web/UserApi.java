@@ -6,6 +6,7 @@ import mk.ukim.finki.dick.prezemiakcijabackend.domain.User;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.dto.JWTResponse;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.dto.LoginDto;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.dto.RegistrationDto;
+import mk.ukim.finki.dick.prezemiakcijabackend.domain.exc.InvalidCredentials;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.exc.PasswordsDoNotMatch;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.exc.UserAlreadyExists;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.exc.UserNotFound;
@@ -69,7 +70,7 @@ public class UserApi {
             JWTResponse jwtResponse = this.userService.loginUser(loginDto);
 
             return ResponseEntity.ok(jwtResponse);
-        } catch (ConstraintViolationException | UserNotFound e) {
+        } catch (ConstraintViolationException | UserNotFound | InvalidCredentials e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (JsonProcessingException e) {
             return ResponseEntity.internalServerError().body(e.getMessage());
