@@ -1,4 +1,4 @@
-package mk.ukim.finki.dick.prezemiakcijabackend.unit;
+package mk.ukim.finki.dick.prezemiakcijabackend.junit;
 
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.Forum;
 import mk.ukim.finki.dick.prezemiakcijabackend.domain.Initiative;

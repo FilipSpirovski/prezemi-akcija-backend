@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/initiatives")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 public class InitiativeApi {
 

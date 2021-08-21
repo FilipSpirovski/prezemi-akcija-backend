@@ -1,4 +1,4 @@
-package mk.ukim.finki.dick.prezemiakcijabackend.unit;
+package mk.ukim.finki.dick.prezemiakcijabackend.junit;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
