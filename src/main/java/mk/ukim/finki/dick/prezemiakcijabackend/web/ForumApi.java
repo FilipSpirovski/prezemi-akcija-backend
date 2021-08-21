@@ -21,7 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/forum")
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 public class ForumApi {
 
